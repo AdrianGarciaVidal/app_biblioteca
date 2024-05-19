@@ -23,8 +23,8 @@ class CreatePrestamosTable extends Migration
             $table->timestamps();
 
             // Definir las claves foráneas
-            $table->foreign('libro_id')->references('id')->on('libros');
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            // $table->foreign('libro_id')->references('id')->on('libros');
+            // $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
 
