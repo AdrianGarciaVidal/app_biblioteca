@@ -20,7 +20,7 @@ class PrestamosController extends Controller
     public function show(Request $request){
 
         $prestamos =Prestamo::join("libros", "prestamos.libro_id", "libros.id")
-        ->join("usuarios", "prestamos.usuarios_id", "usuarios.id")
+        ->join("usuarios", "prestamos.usuario_id", "usuarios.id")
         ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
         "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )

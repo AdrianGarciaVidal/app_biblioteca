@@ -20,7 +20,7 @@ class LibrosController extends Controller{
 
         $libros = Libro::join("autores", "libros.autor_id", "autores.id")
         ->select("autores.nombre","autores.apellido","autores.nacionalidad","libros.id","libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
-        ->all();
+        ->get();
         return response()->json(['libros', $libros], 200);
     }
 
