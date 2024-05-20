@@ -31,7 +31,7 @@ class LibrosController extends Controller{
             'titulo' => 'required',
             'autor_id' => 'required',
             'isbn' => 'required',
-            'ano_publicacion' => 'required',
+            'año_publicacion' => 'required',
             'estante' => 'required',
 
             // Agrega aquí las reglas de validación para cada campo necesario
@@ -41,7 +41,7 @@ class LibrosController extends Controller{
         $libro->titulo = $request->titulo;
         $libro->autor_id = $request->autor_id;
         $libro->isbn = $request->isbn;
-        $libro->ano_publicacion = $request->ano_publicacion;
+        $libro->año_publicacion = $request->año_publicacion;
         $libro->estante = $request->estante;
         if (!$libro->save()) {
             return response()->json(['message'=> 'datos incorrectos'], 200);
@@ -60,7 +60,7 @@ class LibrosController extends Controller{
             'titulo' => 'required',
             'autor_id' => 'required',
             'isbn' => 'required',
-            'ano_publicacion' => 'required',
+            'año_publicacion' => 'required',
             'estante' => 'required',
 
             // Agrega aquí las reglas de validación para cada campo necesario
@@ -70,7 +70,7 @@ class LibrosController extends Controller{
         $libro->titulo = $request->titulo;
         $libro->autor_id = $request->autor_id;
         $libro->isbn = $request->isbn;
-        $libro->ano_publicacion = $request->ano_publicacion;
+        $libro->año_publicacion = $request->año_publicacion;
         $libro->estante = $request->estante;
         if (!$libro->save()) {
             return response()->json(['message'=> 'datos incorrectos'], 200);
