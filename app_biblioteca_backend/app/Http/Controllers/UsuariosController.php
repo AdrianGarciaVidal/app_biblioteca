@@ -31,6 +31,9 @@ class UsuariosController extends Controller
             // Agrega aquí las reglas de validación para cada campo necesario
         ]);
 
+        if (Usuario::where("email", "=", "$request->email")->first()) {
+            return response()->json(['message',false], 200);
+        }
 
         try {
             $usuario = new Usuario();
@@ -60,11 +63,17 @@ class UsuariosController extends Controller
 
             // Agrega aquí las reglas de validación para cada campo necesario
         ]);
+
+
+
         try {
             $usuario = Usuario::find($request->id_usuario);
             $usuario->nombre = $request->nombre;
             $usuario->apellido = $request->apellido;
-            $usuario->email = $request->email;
+            if (!Usuario::where("email", "=", "$request->email")->first()) {
+                $usuario->email = $request->email;
+            }
+
             $usuario->tipo = $request->tipo;
         if (!$usuario->save()) {
             return response()->json(['message'=> 'datos incorrectos'], 200);

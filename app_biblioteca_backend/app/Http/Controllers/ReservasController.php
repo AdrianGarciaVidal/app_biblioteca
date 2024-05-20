@@ -11,7 +11,7 @@ class ReservasController extends Controller
         $reserva = Reserva::join("libros", "reservas.libro_id", "libros.id")
         ->join("usuarios", "reservas.usuario_id", "usuarios.id")
         ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
-        "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado",
+        "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado", "reservas.id",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->where("reservas.id","=",$id)->first();
         return response()->json(['reserva'=>$reserva], 200);
@@ -22,7 +22,7 @@ class ReservasController extends Controller
         $reservas =Reserva::join("libros", "reservas.libro_id", "libros.id")
         ->join("usuarios", "reservas.usuario_id", "usuarios.id")
         ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
-        "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado",
+        "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado","reservas.id",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->get();
         return response()->json(['reservas'=> $reservas], 200);
@@ -56,6 +56,12 @@ class ReservasController extends Controller
             return response()->json(['message'=> $th], 200);
         }
 
+        $reserva = Reserva::join("libros", "reservas.libro_id", "libros.id")
+        ->join("usuarios", "reservas.usuario_id", "usuarios.id")
+        ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
+        "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado","reservas.id",
+        "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
+        ->where("reservas.id","=",$reserva->id)->first();
         return response()->json(['reserva'=> $reserva], 200);
     }
     public function edit(Request $request){
@@ -90,7 +96,7 @@ class ReservasController extends Controller
     public function delete(Request $request){
 
         $request->validate([
-            'id_reserva' => 'id_reserva',
+            'id_reserva' => 'required',
             // Agrega aquí las reglas de validación para cada campo necesario
         ]);
         try {

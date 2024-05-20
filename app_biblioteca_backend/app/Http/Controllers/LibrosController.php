@@ -33,11 +33,10 @@ class LibrosController extends Controller{
             'isbn' => 'required',
             'año_publicacion' => 'required',
             'estante' => 'required',
-
             // Agrega aquí las reglas de validación para cada campo necesario
         ]);
         try {
-            $libro = new Libro();
+        $libro = new Libro();
         $libro->titulo = $request->titulo;
         $libro->autor_id = $request->autor_id;
         $libro->isbn = $request->isbn;
@@ -50,6 +49,11 @@ class LibrosController extends Controller{
         } catch (\Throwable $th) {
             return response()->json(['message'=> $th], 200);
         }
+
+        $libro = Libro::join("autores", "libros.autor_id", "autores.id")
+        ->select("autores.nombre","autores.apellido","autores.nacionalidad","libros.id","libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
+        ->where("libros.id","=",$libro->id)->first();
+
 
         return response()->json(['libro'=> $libro], 200);
     }

@@ -11,7 +11,7 @@ class PrestamosController extends Controller
         $prestamo = Prestamo::join("libros", "prestamos.libro_id", "libros.id")
         ->join("usuarios", "prestamos.usuario_id", "usuarios.id")
         ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
-        "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
+        "prestamos.id",  "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->where("prestamos.id","=",$id)->first();
         return response()->json(['prestamo'=>$prestamo], 200);
@@ -22,7 +22,7 @@ class PrestamosController extends Controller
         $prestamos =Prestamo::join("libros", "prestamos.libro_id", "libros.id")
         ->join("usuarios", "prestamos.usuario_id", "usuarios.id")
         ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
-        "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
+        "prestamos.id",  "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->get();
         return response()->json(['prestamos'=> $prestamos], 200);
@@ -56,6 +56,13 @@ class PrestamosController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['message'=> $th], 200);
         }
+
+        $prestamo = Prestamo::join("libros", "prestamos.libro_id", "libros.id")
+        ->join("usuarios", "prestamos.usuario_id", "usuarios.id")
+        ->select("usuarios.nombre","usuarios.apellido","usuarios.email","usuarios.tipo",
+        "prestamos.id",  "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
+        "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
+        ->where("prestamos.id","=",$prestamo->id)->first();
 
         return response()->json(['prestamo'=> $prestamo], 200);
     }
@@ -93,7 +100,7 @@ class PrestamosController extends Controller
     public function delete(Request $request){
 
         $request->validate([
-            'id_prestamo' => 'id_prestamo',
+            'id_prestamo' => 'required',
             // Agrega aquí las reglas de validación para cada campo necesario
         ]);
         try {

@@ -4,11 +4,11 @@
 
 <template>
  
-    <nav class="navbar navbar-expand-lg bg-body-tertiary p-5" >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-3" >
       
   <div class="container-fluid ">
     <a class="navbar-brand" href="#">
-      <router-link to="./">
+      <router-link to="/">
       <img src="../icons/favicon.png" alt="Logo" width="29" height="30" class="d-inline-block align-text-top">
       BIBLIOTECA
     </router-link>

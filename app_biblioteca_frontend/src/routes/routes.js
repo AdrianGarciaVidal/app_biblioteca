@@ -35,7 +35,7 @@ const routes = [
   },
 
   {
-    path: '/usuarios/editar',
+    path: '/usuarios/editar/:id',
     name: 'editar_usuario',
     component: editar_usuario,
   },
@@ -46,7 +46,7 @@ const routes = [
     component: libros,
   },
   {
-    path: '/libros/editar',
+    path: '/libros/editar/:id',
     name: 'editar_libro',
     component: editar_libro,
   },
@@ -57,7 +57,7 @@ const routes = [
     component: autores,
   },
   {
-    path: '/autores/editar',
+    path: '/autores/editar/:id',
     name: 'editar_autor',
     component: editar_autor,
   },
@@ -67,7 +67,7 @@ const routes = [
     component: reservas,
   },
   {
-    path: '/reservas/editar',
+    path: '/reservas/editar/:id',
     name: 'editar_reserva',
     component: editar_reserva,
   },
@@ -77,7 +77,7 @@ const routes = [
     component: prestamos,
   },
   {
-    path: '/prestamos/editar',
+    path: '/prestamos/editar/:id',
     name: 'editar_prestamo',
     component: editar_prestamo,
   },
