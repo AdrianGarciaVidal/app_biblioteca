@@ -17,7 +17,7 @@ class AutoresController extends Controller
     public function show(Request $request){
 
         $autores = Autor::all();
-        return response()->json(['autores', $autores], 200);
+        return response()->json(['autores'=> $autores], 200);
     }
 
 
@@ -36,14 +36,14 @@ class AutoresController extends Controller
         $autor->apellido = $request->apellido;
         $autor->nacionalidad = $request->nacionalidad;
         if (!$autor->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['autor', $autor], 200);
+        return response()->json(['autor'=> $autor], 200);
     }
     public function edit(Request $request){
 
@@ -60,14 +60,14 @@ class AutoresController extends Controller
         $autor->apellido = $request->apellido;
         $autor->nacionalidad = $request->nacionalidad;
         if (!$autor->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['autor', $autor], 200);
+        return response()->json(['autor'=> $autor], 200);
     }
 
     public function delete(Request $request){
@@ -79,14 +79,14 @@ class AutoresController extends Controller
         try {
         $autor = Autor::find($request->id_autor);
         if (!$autor->delete()) {
-            return response()->json(['message', 'algo salio mal con los datos'], 200);
+            return response()->json(['message'=> 'algo salio mal con los datos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=>$th], 200);
         }
 
-        return response()->json(['autor', $autor], 200);
+        return response()->json(['autor'=> $autor], 200);
     }
 
 }

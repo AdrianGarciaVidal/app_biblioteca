@@ -25,7 +25,7 @@ class ReservasController extends Controller
         "reservas.libro_id",  "reservas.usuario_id",  "reservas.fecha_reserva",  "reservas.estado",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->get();
-        return response()->json(['reservas', $reservas], 200);
+        return response()->json(['reservas'=> $reservas], 200);
     }
 
 
@@ -53,10 +53,10 @@ class ReservasController extends Controller
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['reserva', $reserva], 200);
+        return response()->json(['reserva'=> $reserva], 200);
     }
     public function edit(Request $request){
 
@@ -77,14 +77,14 @@ class ReservasController extends Controller
             $reserva->fecha_reserva = $request->fecha_reserva;
             $reserva->estado = $request->estado;
         if (!$reserva->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=>$th], 200);
         }
 
-        return response()->json(['reserva', $reserva], 200);
+        return response()->json(['reserva'=> $reserva], 200);
     }
 
     public function delete(Request $request){
@@ -96,13 +96,13 @@ class ReservasController extends Controller
         try {
         $reserva = Reserva::find($request->id_reserva);
         if (!$reserva->delete()) {
-            return response()->json(['message', 'algo salio mal con los datos'], 200);
+            return response()->json(['message'=>'algo salio mal con los datos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['reserva', $reserva], 200);
+        return response()->json(['reserva'=> $reserva], 200);
     }
 }

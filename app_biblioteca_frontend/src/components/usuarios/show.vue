@@ -49,7 +49,14 @@
                             </thead>
 
                             <tbody>
-
+                                <tr v-for="(usuarios, index) in usuario">
+                                    <td>{{ usuario.id }}</td>
+                                    <td>{{ usuario.nombre }}</td>
+                                    <td>{{ usuario.apellido }}</td>
+                                    <td>{{ usuario.email }}</td>
+                                    <td>{{ usuario.tipo }}</td>
+                                    <td><button class=""></button></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -61,6 +68,51 @@
 
 <script setup>
 
+import axios from 'axios';
+import { computed, ref } from 'vue';
+
+
+// axios.get('https://yesno.wtf/api')
+//         .then(response => {
+//           console.log('Respuesta del servidor:', response.data);
+//           // Aquí puedes manejar la respuesta del servidor
+//         })
+//         .catch(error => {
+//           console.error('Error al enviar los datos:', error);
+//           // Aquí puedes manejar los errores de la solicitud
+//         });
+
+const usuarios = ref({})
+
+
+const traer_usuarios = ()=>{
+
+    
+axios.get('http://127.0.0.1:8000/api/usuarios')
+        .then(response => {
+            const api_usuarios = response.data.usuarios;
+            console.log(api_usuarios)
+          console.log('Respuesta del servidor:', response.data);
+          // Aquí puedes manejar la respuesta del servidor
+        })
+        .catch(error => {
+          alert('Error al enviar los datos:', error)
+          // Aquí puedes manejar los errores de la solicitud
+        });
+}
+traer_usuarios();
+
+const cargar_datos = (usuario)=>{
+
+    usuarios.value.push({
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+          email: usuario.email,
+          tipo: usuario.tipo
+       
+        });
+           
+}
 
 const guardar_datos = () => {
 

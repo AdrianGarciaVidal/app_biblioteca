@@ -15,7 +15,7 @@ class UsuariosController extends Controller
     public function show(Request $request){
 
         $usuarios=Usuario::all();
-        return response()->json(['usuarios', $usuarios], 200);
+        return response()->json(['usuarios'=> $usuarios], 200);
     }
 
 
@@ -46,7 +46,7 @@ class UsuariosController extends Controller
             return response()->json(['message', $th], 200);
         }
 
-        return response()->json(['usuario', $usuario], 200);
+        return response()->json(['usuario'=> $usuario], 200);
     }
     public function edit(Request $request){
 
@@ -67,14 +67,14 @@ class UsuariosController extends Controller
             $usuario->email = $request->email;
             $usuario->tipo = $request->tipo;
         if (!$usuario->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['usuario', $usuario], 200);
+        return response()->json(['usuario'=> $usuario], 200);
     }
 
     public function delete(Request $request){
@@ -90,9 +90,9 @@ class UsuariosController extends Controller
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['usuario', $usuario], 200);
+        return response()->json(['usuario'=> $usuario], 200);
     }
 }

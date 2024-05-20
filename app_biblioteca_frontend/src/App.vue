@@ -12,6 +12,7 @@ export default {
 };
 
 </script>
+
 <template>
   <div id="app">
 <Header></Header>

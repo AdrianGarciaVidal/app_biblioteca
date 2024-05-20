@@ -25,7 +25,7 @@ class PrestamosController extends Controller
         "prestamos.libro_id",  "prestamos.usuario_id",  "prestamos.fecha_prestamo",  "prestamos.fecha_devolucion","prestamos.estado",
         "libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->get();
-        return response()->json(['prestamos', $prestamos], 200);
+        return response()->json(['prestamos'=> $prestamos], 200);
     }
 
 
@@ -50,14 +50,14 @@ class PrestamosController extends Controller
         $prestamo->fecha_devolucion = $request->fecha_devolucion;
         $prestamo->estado = $request->estado;
         if (!$prestamo->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['prestamo', $prestamo], 200);
+        return response()->json(['prestamo'=> $prestamo], 200);
     }
     public function edit(Request $request){
 
@@ -80,14 +80,14 @@ class PrestamosController extends Controller
             $prestamo->fecha_devolucion = $request->fecha_devolucion;
             $prestamo->estado = $request->estado;
         if (!$prestamo->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['prestamo', $prestamo], 200);
+        return response()->json(['prestamo'=> $prestamo], 200);
     }
 
     public function delete(Request $request){
@@ -99,13 +99,13 @@ class PrestamosController extends Controller
         try {
         $prestamo = Prestamo::find($request->id_prestamo);
         if (!$prestamo->delete()) {
-            return response()->json(['message', 'algo salio mal con los datos'], 200);
+            return response()->json(['message'=> 'algo salio mal con los datos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['prestamo', $prestamo], 200);
+        return response()->json(['prestamo'=> $prestamo], 200);
     }
 }

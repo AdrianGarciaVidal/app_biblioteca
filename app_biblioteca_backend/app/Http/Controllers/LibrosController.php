@@ -21,7 +21,7 @@ class LibrosController extends Controller{
         $libros = Libro::join("autores", "libros.autor_id", "autores.id")
         ->select("autores.nombre","autores.apellido","autores.nacionalidad","libros.id","libros.titulo","libros.autor_id","libros.isbn","libros.año_publicacion","libros.estante" )
         ->get();
-        return response()->json(['libros', $libros], 200);
+        return response()->json(['libros'=> $libros], 200);
     }
 
 
@@ -44,14 +44,14 @@ class LibrosController extends Controller{
         $libro->ano_publicacion = $request->ano_publicacion;
         $libro->estante = $request->estante;
         if (!$libro->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['libro', $libro], 200);
+        return response()->json(['libro'=> $libro], 200);
     }
     public function edit(Request $request){
 
@@ -73,14 +73,14 @@ class LibrosController extends Controller{
         $libro->ano_publicacion = $request->ano_publicacion;
         $libro->estante = $request->estante;
         if (!$libro->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['libro', $libro], 200);
+        return response()->json(['libro'=>$libro], 200);
     }
 
     public function delete(Request $request){
@@ -92,14 +92,14 @@ class LibrosController extends Controller{
         try {
         $libro = Libro::find($request->id_libro);
         if (!$libro->delete()) {
-            return response()->json(['message', 'algo salio mal con los datos'], 200);
+            return response()->json(['message'=> 'algo salio mal con los datos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
-        return response()->json(['libro', $libro], 200);
+        return response()->json(['libro'=> $libro], 200);
     }
 
 }
