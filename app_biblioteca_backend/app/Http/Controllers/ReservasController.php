@@ -49,7 +49,7 @@ class ReservasController extends Controller
         $reserva->fecha_reserva = $request->fecha_reserva;
         $reserva->estado = $request->estado;
         if (!$reserva->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {

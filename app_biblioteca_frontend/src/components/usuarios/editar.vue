@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">EMAIL</label>
-                        <input type="email" class="form-control" id="email" placeholder="Ingrese un email">
+                        <input disabled type="email" class="form-control" id="email" placeholder="Ingrese un email">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1"  class="form-label">TIPO</label>

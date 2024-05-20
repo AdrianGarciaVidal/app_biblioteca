@@ -89,6 +89,7 @@ const guardar_datos = () => {
     axios.post('http://127.0.0.1:8000/api/usuarios/create', datos)
         .then(response => {
 
+            console.log(response.data)
            if (response.data.usuario) {
              cargar_datos(response.data.usuario);
             //  cargar_tabla();

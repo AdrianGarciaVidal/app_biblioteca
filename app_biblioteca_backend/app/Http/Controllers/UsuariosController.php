@@ -32,7 +32,7 @@ class UsuariosController extends Controller
         ]);
 
         if (Usuario::where("email", "=", "$request->email")->first()) {
-            return response()->json(['message',false], 200);
+            return response()->json(['message'=>false], 200);
         }
 
         try {
@@ -42,11 +42,11 @@ class UsuariosController extends Controller
         $usuario->email = $request->email;
         $usuario->tipo = $request->tipo;
         if (!$usuario->save()) {
-            return response()->json(['message', 'datos incorrectos'], 200);
+            return response()->json(['message'=> 'datos incorrectos'], 200);
         }
 
         } catch (\Throwable $th) {
-            return response()->json(['message', $th], 200);
+            return response()->json(['message'=> $th], 200);
         }
 
         return response()->json(['usuario'=> $usuario], 200);
@@ -95,7 +95,7 @@ class UsuariosController extends Controller
         try {
         $usuario = Usuario::find($request->id_usuario);
         if (!$usuario->delete()) {
-            return response()->json(['message', 'algo salio mal con los datos'], 200);
+            return response()->json(['message'=> 'algo salio mal con los datos'], 200);
         }
 
         } catch (\Throwable $th) {
