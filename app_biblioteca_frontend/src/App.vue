@@ -33,4 +33,9 @@ nav li {
   display: inline;
   margin-right: 10px;
 }
+a{
+  text-decoration: none;
+  font-weight: 200;
+  color: black;
+}
 </style>
